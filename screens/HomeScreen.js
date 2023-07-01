@@ -1,11 +1,17 @@
 import { StyleSheet, View, Text } from "react-native";
+import HeroText from "../components/Home/HeroText";
+import Title from "../components/Util/Title";
+import RecipeCard from "../components/Home/RecipeCard";
 
 function HomeScreen() {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                this is the Home Screen
-            </Text>
+            <HeroText />
+            <Title style={styles.recent}>Recently Viewed Recipes</Title>
+            <View>
+                <RecipeCard />
+            </View>
+            <Title style={styles.favourite}>Favourite Recipes</Title>
         </View>
     )
 }
@@ -17,7 +23,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#AFD3CA",
     },
-    text: {
-        margin: 100
+    recent: {
+        marginTop: 60,
+        paddingLeft: 20,
+    },
+    favourite: {
+        marginTop: 200,
+        paddingLeft: 20
     }
 })
