@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
     },
     favourite: {
-        marginTop: 200,
+        marginTop: 40,
         paddingLeft: 20
     }
 })
