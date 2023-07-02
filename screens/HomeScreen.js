@@ -9,7 +9,7 @@ function HomeScreen() {
             <HeroText />
             <Title style={styles.recent}>Recently Viewed Recipes</Title>
             <View>
-                <RecipeCard />
+                <RecipeCard>Fried Rice</RecipeCard>
             </View>
             <Title style={styles.favourite}>Favourite Recipes</Title>
         </View>

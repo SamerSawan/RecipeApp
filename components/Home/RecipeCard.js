@@ -1,7 +1,8 @@
 import { StyleSheet, Pressable, ImageBackground, View, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import Button from "../Util/Button";
 
-function RecipeCard() {
+function RecipeCard({ children }) {
 
     function cardPressHandler() {
         console.log("card pressed")
@@ -18,9 +19,10 @@ function RecipeCard() {
                     >
                         <LinearGradient 
                         colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.75)"]}
-                        style={styles.overlay} /> 
+                        style={styles.overlay} />
+                        <Button style={styles.icon} />
                         <Text style={styles.title}>
-                            Fried Rice
+                            {children}
                         </Text>
                     </ImageBackground>
                 </View>
@@ -34,6 +36,7 @@ export default RecipeCard;
 
 const styles = StyleSheet.create({
     gridItem: {
+        marginTop: 40,
         margin: 24,
         height: 150,
         width: 150,
@@ -68,6 +71,10 @@ const styles = StyleSheet.create({
         color: "white",
         margin: 0,
         opacity: 1
+    },
+    icon: {
+        marginLeft: 115,
+        marginVertical: 8
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
