@@ -1,4 +1,5 @@
 import { StyleSheet, Pressable, ImageBackground, View, Text } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
 
 function RecipeCard() {
 
@@ -15,8 +16,11 @@ function RecipeCard() {
                     source={{ uri: "https://lifeloveandgoodfood.com/wp-content/uploads/2023/03/chicken_fried_rice00032a-1200x1200-1.jpg"}}
                     imageStyle={{borderRadius: 10}}
                     >
+                        <LinearGradient 
+                        colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.75)"]}
+                        style={styles.overlay} /> 
                         <Text style={styles.title}>
-                            Recipe
+                            Fried Rice
                         </Text>
                     </ImageBackground>
                 </View>
@@ -55,9 +59,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
+        position: "absolute",
+        top: '75%',
+        left: '10%',
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 18,
-        margin: 8
+        fontSize: 14,
+        color: "white",
+        margin: 0,
+        opacity: 1
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        borderRadius: 10,
     }
 })
