@@ -1,16 +1,25 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import HeroText from "../components/Home/HeroText";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 
+import { RECIPES } from "../data/dummy-data";
+
+function renderRecipeItem({ item }) {
+    return (
+        <RecipeCard>{item.title}</RecipeCard>
+    );
+}
+
 function HomeScreen() {
+
+    
+
     return (
         <View style={styles.container}>
             <HeroText />
             <Title style={styles.recent}>Recently Viewed Recipes</Title>
-            <View>
-                <RecipeCard>Fried Rice</RecipeCard>
-            </View>
+            <FlatList style={styles.list} data={RECIPES} keyExtractor={(item) => item.id} renderItem={renderRecipeItem} horizontal={true} showsHorizontalScrollIndicator={false}/>
             <Title style={styles.favourite}>Favourite Recipes</Title>
         </View>
     )
@@ -28,7 +37,10 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
     },
     favourite: {
-        marginTop: 40,
         paddingLeft: 20
+    },
+    list: {
+        flex: 1,
+        maxHeight: '30%'
     }
 })

@@ -22,7 +22,7 @@ function RecipeCard({ children }) {
                         style={styles.overlay} />
                         <Button style={styles.icon} />
                         <Text style={styles.title}>
-                            {children}
+                            { children }
                         </Text>
                     </ImageBackground>
                 </View>
