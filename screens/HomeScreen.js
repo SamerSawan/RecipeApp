@@ -21,6 +21,7 @@ function HomeScreen() {
             <Title style={styles.recent}>Recently Viewed Recipes</Title>
             <FlatList style={styles.list} data={RECIPES} keyExtractor={(item) => item.id} renderItem={renderRecipeItem} horizontal={true} showsHorizontalScrollIndicator={false}/>
             <Title style={styles.favourite}>Favourite Recipes</Title>
+            <FlatList style={styles.list} data={RECIPES} keyExtractor={(item) => item.id} renderItem={renderRecipeItem} horizontal={true} showsHorizontalScrollIndicator={false}/>
         </View>
     )
 }
