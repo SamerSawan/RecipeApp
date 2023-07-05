@@ -20,7 +20,7 @@ function RecipeCard({ children }) {
                         <LinearGradient 
                         colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.75)"]}
                         style={styles.overlay} />
-                        <Button style={styles.icon} />
+                        <Button name="star-outline" size={24} color="white" style={styles.icon} />
                         <Text style={styles.title}>
                             { children }
                         </Text>
