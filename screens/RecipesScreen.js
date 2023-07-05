@@ -1,12 +1,9 @@
 import { StyleSheet, View, Text } from "react-native";
+import SearchBar from "../components/Util/SearchBar";
 
 function RecipesScreen() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>
-                this is the Recipes Screen
-            </Text>
-        </View>
+        <SearchBar />
     )
 }
 
