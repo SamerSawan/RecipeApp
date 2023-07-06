@@ -1,6 +1,6 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import SearchBar from "../components/Search/SearchBar";
-import Button from "../components/Util/Button";
+import Button from "../components/Util/IconButton";
 import CategoryCarousel from "../components/Search/CategoryCarousel";
 import RecipeCard from "../components/Home/RecipeCard";
 

@@ -1,6 +1,6 @@
 import { StyleSheet, Pressable, ImageBackground, View, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import Button from "../Util/Button";
+import Button from "../Util/IconButton";
 import QuickInfo from "./QuickInfo";
 
 function RecipeCard({ children, height, width, size, pressHandler }) {
