@@ -1,10 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../components/Util/Button";
 
-function RecipeDetails(){
+function RecipeDetails({ navigation }){
+
+    function pressHandler(){
+        navigation.goBack()
+        console.log("going back");
+    }
+
     return (
     <View style={styles.container}>
-        <Button name="arrow-back-outline" size={12} color="black"/>
+        <Button name="arrow-back-outline" size={30} color="black" onPress={pressHandler}/>
         <Text>Hello World! Recipe Details</Text>
     </View>
     )
@@ -17,7 +23,8 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         backgroundColor: "#AFD3CA",
+        paddingTop: 100
     }
 })
