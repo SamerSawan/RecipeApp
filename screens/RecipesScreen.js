@@ -6,13 +6,23 @@ import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
 
-function renderRecipeItem({ item }) {
-    return (
-        <RecipeCard height={150} width={300} size={14}>{item.title}</RecipeCard>
-    );
-}
 
-function RecipesScreen() {
+
+function RecipesScreen({ navigation }) {
+
+    function renderRecipeItem({ item }) {
+        function pressHandler() {
+            navigation.navigate('Recipe Details', {
+                recipeId: item.id
+            })
+        }
+
+        return (
+            <RecipeCard height={150} width={300} size={14} pressHandler={pressHandler}>{item.title}</RecipeCard>
+        );
+    }
+
+
     return (
         <>
         <View style={styles.container}>

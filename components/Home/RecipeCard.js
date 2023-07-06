@@ -3,15 +3,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Button from "../Util/Button";
 import QuickInfo from "./QuickInfo";
 
-function RecipeCard({ children, height, width, size }) {
-
-    function cardPressHandler() {
-        console.log("card pressed")
-    }
+function RecipeCard({ children, height, width, size, pressHandler }) {
 
     return (
         <View style={[styles.gridItem, { height, width }]}>
-            <Pressable onPress={cardPressHandler} style={styles.button}>
+            <Pressable onPress={pressHandler} style={styles.button}>
                 <View style={styles.innerContainer}>
                     <ImageBackground 
                     style={{height, width}} 
