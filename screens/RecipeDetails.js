@@ -1,11 +1,24 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import IconButton from "../components/Util/IconButton";
 import { RECIPES } from "../data/dummy-data";
+import { INGREDIENTS } from "../data/dummy-data";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 import Button from "../components/Util/Button";
 
+
+
 function RecipeDetails({ navigation }){
+
+
+    function renderIngredientItem({ item }) {
+        return (
+            <View style={styles.ingredientContainer}>
+                <Text style={styles.ingredientText}>{item.name}</Text>
+                <Text style={styles.ingredientText}>{item.amount}</Text>
+            </View>
+        )
+    }
 
     function pressHandler(){
         navigation.goBack()
@@ -32,6 +45,10 @@ function RecipeDetails({ navigation }){
                 <Button style={styles.button}>Procedure</Button>
             </View>
         </View>
+        <FlatList style={styles.list}
+        data={INGREDIENTS}
+        keyExtractor={(item) => item.id}
+        renderItem={renderIngredientItem}/>
     </View>
     )
 }
@@ -92,5 +109,24 @@ const styles = StyleSheet.create({
         color: '#129575',
         fontWeight: 'bold',
         fontSize: 16
+    },
+    list: {
+        marginVertical: 20
+    },
+    ingredientContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#DBEBE7',
+        marginVertical: 10,
+        height: 50,
+        width: 270,
+        borderRadius: 10,
+    },
+    ingredientText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginHorizontal: 10
     }
 })

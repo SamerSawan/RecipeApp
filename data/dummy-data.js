@@ -1,5 +1,6 @@
 import Category from "../models/category";
 import Recipe from "../models/recipe";
+import Ingredient from "../models/ingredient"
 
 export const RECIPES = [
 
@@ -39,4 +40,27 @@ export const CATEGORIES = [
         'Vegeterian'
     )
 
+]
+
+export const INGREDIENTS = [
+    new Ingredient(
+        'i1',
+        'Rice',
+        '200g'
+    ),
+    new Ingredient(
+        'i2',
+        'Chicken',
+        '150g'
+    ),
+    new Ingredient(
+        'i3',
+        'Green Pepper',
+        '50g'
+    ),
+    new Ingredient(
+        'i4',
+        'Onion',
+        '50g'
+    )
 ]
