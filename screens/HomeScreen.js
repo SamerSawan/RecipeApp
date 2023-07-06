@@ -18,7 +18,7 @@ function HomeScreen() {
     return (
         <View style={styles.container}>
             <HeroText />
-            <Title style={styles.recent}>Recently Viewed Recipes</Title>
+            <Title style={styles.recent} textStyle={styles.titleText}>Recently Viewed Recipes</Title>
             <FlatList 
             style={styles.list} 
             data={RECIPES} 
@@ -26,7 +26,7 @@ function HomeScreen() {
             renderItem={renderRecipeItem} 
             horizontal={true} 
             showsHorizontalScrollIndicator={false}/>
-            <Title style={styles.favourite}>Favourite Recipes</Title>
+            <Title style={styles.favourite} textStyle={styles.titleText}>Favourite Recipes</Title>
             <FlatList 
             style={styles.list} 
             data={RECIPES} 
@@ -55,5 +55,9 @@ const styles = StyleSheet.create({
     list: {
         flex: 1,
         maxHeight: '30%'
+    },
+    titleText: {
+        fontWeight: 'bold',
+        fontSize: 14
     }
 })

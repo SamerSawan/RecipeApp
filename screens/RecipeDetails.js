@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../components/Util/Button";
+import { RECIPES } from "../data/dummy-data";
+import Title from "../components/Util/Title";
 
 function RecipeDetails({ navigation }){
 
@@ -10,8 +12,8 @@ function RecipeDetails({ navigation }){
 
     return (
     <View style={styles.container}>
-        <Button name="arrow-back-outline" size={30} color="black" onPress={pressHandler}/>
-        <Text>Hello World! Recipe Details</Text>
+        <Button style={styles.backButton} name="arrow-back-outline" size={30} color="#2A7C68" onPress={pressHandler}/>
+        <Title style={styles.titleContainer} textStyle={styles.titleText}>Fried Rice</Title>
     </View>
     )
 }
@@ -25,6 +27,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         backgroundColor: "#AFD3CA",
-        paddingTop: 100
+        paddingTop: 60
+    },
+    backButton: {
+        position: "absolute",
+        top: '8%',
+        left: '10%'
+    },
+    titleContainer: {
+        marginTop: 5
+    },
+    titleText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#2A7C68'
     }
 })

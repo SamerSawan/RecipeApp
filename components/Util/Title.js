@@ -1,9 +1,9 @@
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 
-function Title({ children, style }){
+function Title({ children, style, textStyle }){
     return (
         <View style={style}>
-            <Text style={styles.text}>
+            <Text style={textStyle}>
                 { children }
             </Text>
         </View>
@@ -12,10 +12,4 @@ function Title({ children, style }){
 }
 
 export default Title;
-
-const styles = StyleSheet.create({
-    text: {
-        fontWeight: 'bold',
-        fontSize: 14
-    }
-})
+    
