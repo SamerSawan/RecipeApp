@@ -1,4 +1,4 @@
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import HeroText from "../components/Home/HeroText";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
@@ -19,9 +19,21 @@ function HomeScreen() {
         <View style={styles.container}>
             <HeroText />
             <Title style={styles.recent}>Recently Viewed Recipes</Title>
-            <FlatList style={styles.list} data={RECIPES} keyExtractor={(item) => item.id} renderItem={renderRecipeItem} horizontal={true} showsHorizontalScrollIndicator={false}/>
+            <FlatList 
+            style={styles.list} 
+            data={RECIPES} 
+            keyExtractor={(item) => item.id} 
+            renderItem={renderRecipeItem} 
+            horizontal={true} 
+            showsHorizontalScrollIndicator={false}/>
             <Title style={styles.favourite}>Favourite Recipes</Title>
-            <FlatList style={styles.list} data={RECIPES} keyExtractor={(item) => item.id} renderItem={renderRecipeItem} horizontal={true} showsHorizontalScrollIndicator={false}/>
+            <FlatList 
+            style={styles.list} 
+            data={RECIPES} 
+            keyExtractor={(item) => item.id} 
+            renderItem={renderRecipeItem} 
+            horizontal={true} 
+            showsHorizontalScrollIndicator={false}/>
         </View>
     )
 }

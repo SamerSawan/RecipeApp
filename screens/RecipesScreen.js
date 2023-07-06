@@ -1,13 +1,17 @@
 import { StyleSheet, View, Text } from "react-native";
-import SearchBar from "../components/Util/SearchBar";
+import SearchBar from "../components/Search/SearchBar";
 import Button from "../components/Util/Button";
+import CategoryCarousel from "../components/Search/CategoryCarousel";
 
 function RecipesScreen() {
     return (
         <>
         <View style={styles.container}>
-            <SearchBar />
-            <Button style={styles.filter} name="filter" size={24} color="white"/>
+            <View style={styles.innerContainer}>
+                <SearchBar />
+                <Button style={styles.filter} name="filter" size={24} color="white"/>
+            </View>
+            <CategoryCarousel />
         </View>
             
         </>
@@ -20,9 +24,13 @@ export default RecipesScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        backgroundColor: "#AFD3CA"
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        backgroundColor: "#AFD3CA",
+    },
+    innerContainer: {
+        height: '20%',
+        flexDirection: 'row'
     },
     filter: {
         marginTop: 100,
