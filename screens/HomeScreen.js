@@ -7,7 +7,7 @@ import { RECIPES } from "../data/dummy-data";
 
 function renderRecipeItem({ item }) {
     return (
-        <RecipeCard>{item.title}</RecipeCard>
+        <RecipeCard height={150} width={150} size={12}>{item.title}</RecipeCard>
     );
 }
 

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 
 import { CATEGORIES } from "../../data/dummy-data";
 
@@ -18,7 +18,7 @@ function CategoryCarousel(){
             renderItem={renderCategory}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={styles.separator}/>}/>
+            ItemSeparatorComponent={() => <Pressable style={styles.separator}/>}/>
         </View>
     
     )

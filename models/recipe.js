@@ -1,10 +1,12 @@
 class Recipe {
     constructor (
         id,
-        title
+        title,
+        uri
     ) {
         this.id = id;
         this.title = title;
+        this.uri = uri;
     }
 }
 

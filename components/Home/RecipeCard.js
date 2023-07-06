@@ -1,19 +1,20 @@
 import { StyleSheet, Pressable, ImageBackground, View, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from "../Util/Button";
+import QuickInfo from "./QuickInfo";
 
-function RecipeCard({ children }) {
+function RecipeCard({ children, height, width, size }) {
 
     function cardPressHandler() {
         console.log("card pressed")
     }
 
     return (
-        <View style={styles.gridItem}>
+        <View style={[styles.gridItem, { height, width }]}>
             <Pressable onPress={cardPressHandler} style={styles.button}>
                 <View style={styles.innerContainer}>
                     <ImageBackground 
-                    style={styles.image} 
+                    style={{height, width}} 
                     source={{ uri: "https://lifeloveandgoodfood.com/wp-content/uploads/2023/03/chicken_fried_rice00032a-1200x1200-1.jpg"}}
                     imageStyle={{borderRadius: 10}}
                     >
@@ -24,6 +25,7 @@ function RecipeCard({ children }) {
                         <Text style={styles.title}>
                             { children }
                         </Text>
+                        <QuickInfo size={size} />
                     </ImageBackground>
                 </View>
             </Pressable>
@@ -38,8 +40,6 @@ const styles = StyleSheet.create({
     gridItem: {
         marginTop: 40,
         margin: 24,
-        height: 150,
-        width: 150,
         borderRadius: 10,
         backgroundColor: 'white',
         shadowColor: 'black',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     title: {
         position: "absolute",
         top: '75%',
-        left: '10%',
+        left: 10,
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 14,
@@ -73,8 +73,10 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     icon: {
-        marginLeft: 115,
-        marginVertical: 8
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        zIndex: 1,
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
