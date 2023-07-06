@@ -1,6 +1,6 @@
 import { StyleSheet, Pressable, ImageBackground, View, Text } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import Button from "../Util/IconButton";
+import IconButton from "../Util/IconButton";
 import QuickInfo from "./QuickInfo";
 
 function RecipeCard({ children, height, width, size, pressHandler }) {
@@ -17,7 +17,7 @@ function RecipeCard({ children, height, width, size, pressHandler }) {
                         <LinearGradient 
                         colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.75)"]}
                         style={styles.overlay} />
-                        <Button name="star-outline" size={24} color="white" style={styles.icon} />
+                        <IconButton name="star-outline" size={24} color="white" style={styles.icon} />
                         <Text style={styles.title}>
                             { children }
                         </Text>
