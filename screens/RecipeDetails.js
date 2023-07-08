@@ -82,9 +82,10 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     description: {
-        width: 300,
+        width: 290,
         height: 80,
-        marginLeft: 56
+        marginLeft: 54,
+        fontSize: 15
     },
     buttonsContainer: {
         flexDirection: 'row',

@@ -15,7 +15,7 @@ function QuickInfo({ size }){
                 <Text style={[styles.quickInfo, extraStyle.size]}>2 servings</Text>
             </View>
             <View style={styles.innerContainer}>
-                <Ionicons name='time-outline' size={size} color='white'/>
+                <Ionicons name='time' size={size} color='white'/>
                 <Text style={[styles.quickInfo, extraStyle.size]}>20 min</Text>
             </View>
             
