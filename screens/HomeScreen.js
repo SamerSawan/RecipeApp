@@ -4,6 +4,7 @@ import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
+import { GlobalStyles } from "../constants/styles";
 
 
 
@@ -50,7 +51,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#AFD3CA",
+        backgroundColor: GlobalStyles.colors.primary100,
     },
     recent: {
         marginTop: 60,

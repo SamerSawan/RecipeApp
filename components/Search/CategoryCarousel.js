@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 
 import { CATEGORIES } from "../../data/dummy-data";
+import { GlobalStyles } from "../../constants/styles";
 
 function renderCategory({ item }){
     return (
@@ -36,6 +37,6 @@ const styles = StyleSheet.create({
         width: '15%',
     },
     unselectedText: {
-        color: '#129575'
+        color: GlobalStyles.colors.primary200
     }
 })

@@ -5,6 +5,7 @@ import CategoryCarousel from "../components/Search/CategoryCarousel";
 import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
+import { GlobalStyles } from "../constants/styles";
 
 
 
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignContent: 'center',
-        backgroundColor: "#AFD3CA",
+        backgroundColor: GlobalStyles.colors.primary100,
     },
     innerContainer: {
         height: '20%',
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     filter: {
         marginTop: 100,
         marginRight: 40,
-        backgroundColor: '#2A7C68',
+        backgroundColor: GlobalStyles.colors.primary300,
         height: 40,
         width: 50,
         alignItems: 'center',

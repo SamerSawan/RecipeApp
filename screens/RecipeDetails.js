@@ -5,6 +5,7 @@ import { INGREDIENTS } from "../data/dummy-data";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 import Button from "../components/Util/Button";
+import { GlobalStyles } from "../constants/styles";
 
 
 
@@ -58,7 +59,7 @@ export default RecipeDetails;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#AFD3CA",
+        backgroundColor: GlobalStyles.colors.primary100,
         paddingTop: 60
     },
     innerContainer: {
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#2A7C68'
+        color: GlobalStyles.colors.primary300
     },
     recipeContainer: {
         marginLeft: 20
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50
     },
     selectedButtonContainer: {
-        backgroundColor: '#2A7C68',
+        backgroundColor: GlobalStyles.colors.primary300,
         borderRadius: 10,
         padding: 16,
     },
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     button: {
-        color: '#129575',
+        color: GlobalStyles.colors.primary200,
         fontWeight: 'bold',
         fontSize: 16
     },
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#DBEBE7',
+        backgroundColor: GlobalStyles.colors.primary50,
         marginVertical: 10,
         height: 50,
         width: 270,

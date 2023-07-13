@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
+import { GlobalStyles } from '../../constants/styles';
 
 function onClick(){
     console.log("search bar clicked")
@@ -10,7 +11,7 @@ function SearchBar() {
         <View style={styles.container} >
             <Pressable style={styles.innerContainer} onPress={onClick}>
                 <View style={styles.innerText}>
-                    <Ionicons name="search-outline" color='#71b1a1' size={24} style={styles.icon}/>
+                    <Ionicons name="search-outline" color={GlobalStyles.colors.primary150} size={24} style={styles.icon}/>
                     <Text style={styles.text}>
                             Search Recipe
                     </Text>
@@ -27,11 +28,11 @@ export default SearchBar;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#AFD3CA",
+        backgroundColor: GlobalStyles.colors.primary100,
     },
     innerContainer: {
         width: 250,
-        borderColor: '#71b1a1',
+        borderColor: GlobalStyles.colors.primary150,
         borderWidth: 1,
         borderRadius: 10,
         marginTop: 100,
@@ -47,6 +48,6 @@ const styles = StyleSheet.create({
     },
     text: {
         marginVertical: 10,
-        color: '#71b1a1'
+        color: GlobalStyles.colors.primary150
     }
 })

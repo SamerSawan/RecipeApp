@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
+import { GlobalStyles } from "../../constants/styles";
 
 function HeroText() {
     return (
@@ -27,6 +28,6 @@ const styles =  StyleSheet.create({
         fontSize: 20,
     },
     hero: {
-        color: "#129575"
+        color: GlobalStyles.colors.primary200
     }
 })

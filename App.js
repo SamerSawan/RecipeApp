@@ -9,6 +9,7 @@ import HomeScreen from './screens/HomeScreen';
 import RecipesScreen from './screens/RecipesScreen';
 import RecipeDetails from './screens/RecipeDetails';
 import { Ionicons } from '@expo/vector-icons';
+import { GlobalStyles } from './constants/styles';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,19 +20,19 @@ function DrawerNavigator(){
     <Tab.Navigator screenOptions={{
       headerShown: false,
       tabBarStyle: {
-        backgroundColor: "#2A7C68"
+        backgroundColor: GlobalStyles.colors.primary300
       }
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarLabel: 'Home',
-        tabBarActiveTintColor: '#FFBA4D',
+        tabBarActiveTintColor: GlobalStyles.colors.accent500,
         tabBarIcon: () => (
           <Ionicons name="home-outline" size={20}/>
         )
       }} />
       <Tab.Screen name="Recipes" component={RecipesScreen} options={{
         tabBarLabel: 'Recipes',
-        tabBarActiveTintColor: '#FFBA4D',
+        tabBarActiveTintColor: GlobalStyles.colors.accent500,
         tabBarIcon: () => (
           <Ionicons name="book-outline" size={20}/>
         )
