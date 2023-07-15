@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, Text } from 'react-native'
+import { Pressable, Text } from 'react-native'
 
 function Button({ children, style }){
     return (
@@ -10,7 +10,3 @@ function Button({ children, style }){
 }
 
 export default Button;
-
-const styles = StyleSheet.create({
-    
-})
