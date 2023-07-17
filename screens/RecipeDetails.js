@@ -1,19 +1,17 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import IconButton from "../components/Util/IconButton";
-import { RECIPES } from "../data/dummy-data";
 import { INGREDIENTS } from "../data/dummy-data";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 import Button from "../components/Util/Button";
-import { GlobalStyles } from "../constants/styles";
 
 function RecipeDetails({ navigation }) {
 
   function renderIngredientItem({ item }) {
     return (
-      <View style={styles.ingredientContainer}>
-        <Text style={styles.ingredientText}>{item.name}</Text>
-        <Text style={styles.ingredientText}>{item.amount}</Text>
+      <View className="flex-row justify-between self-center items-center bg-primary50 my-2.5 h-12 w-72 rounded-lg">
+        <Text className="font-bold text-base mx-2.5">{item.name}</Text>
+        <Text className="font-bold text-base mx-2.5">{item.amount}</Text>
       </View>
     );
   }
@@ -63,22 +61,3 @@ function RecipeDetails({ navigation }) {
 }
 
 export default RecipeDetails;
-
-const styles = StyleSheet.create({
-  ingredientContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    alignSelf: "center",
-    backgroundColor: GlobalStyles.colors.primary50,
-    marginVertical: 10,
-    height: 50,
-    width: 270,
-    borderRadius: 10,
-  },
-  ingredientText: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginHorizontal: 10,
-  },
-});
