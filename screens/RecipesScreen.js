@@ -3,8 +3,10 @@ import SearchBar from "../components/Search/SearchBar";
 import Button from "../components/Util/IconButton";
 import CategoryCarousel from "../components/Search/CategoryCarousel";
 import RecipeCard from "../components/Home/RecipeCard";
+import { useContext } from "react";
 
 import { RECIPES } from "../data/dummy-data";
+import { SearchContext } from "../store/search-context"
 
 function RecipesScreen({ navigation }) {
   function renderRecipeItem({ item }) {
@@ -28,6 +30,10 @@ function RecipesScreen({ navigation }) {
     );
   }
 
+  const { searchQuery } = useContext(SearchContext);
+
+  const filteredRecipes = RECIPES.filter((recipe) => recipe.title.toLowerCase().includes(searchQuery.toLowerCase()))
+
   return (
     <>
       <View className='flex-1 flex-column justify-start align-center bg-primary100'>
@@ -38,7 +44,7 @@ function RecipesScreen({ navigation }) {
         <CategoryCarousel />
         <FlatList
           className='mt-4 ml-3.5'
-          data={RECIPES}
+          data={filteredRecipes}
           keyExtractor={(item) => item.id}
           renderItem={renderRecipeItem}
         />

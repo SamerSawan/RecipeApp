@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-const SearchContext = createContext({
+export const SearchContext = createContext({
     searchQuery: '',
     searchRecipes: () => {}
 });
@@ -13,8 +13,12 @@ function SearchContextProvider({children}) {
         setSearchQuery(query);
     }
 
+    const value = {
+        searchQuery: searchQuery,
+        searchRecipes: searchRecipes,
+      };
 
-    return <SearchContext.Provider>{children}</SearchContext.Provider>
+    return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
 }
 
-export default SearchContextProvider();
+export default SearchContextProvider;
