@@ -4,68 +4,57 @@ import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
-import { GlobalStyles } from "../constants/styles";
-
-
 
 function HomeScreen({ navigation }) {
-
-    function renderRecipeItem({ item }) {
-
-        function pressHandler(){
-            navigation.navigate('Recipe Details', {
-                recipeId: item.id
-            })
-        }
-
-        return (
-            <RecipeCard height={150} width={150} size="text-xs" pressHandler={pressHandler}>{item.title}</RecipeCard>
-        );
+  function renderRecipeItem({ item }) {
+    function pressHandler() {
+      navigation.navigate("Recipe Details", {
+        recipeId: item.id,
+      });
     }
 
     return (
-        <View style={styles.container}>
-            <HeroText />
-            <Title style={styles.recent} textStyle={styles.titleText}>Recently Viewed Recipes</Title>
-            <FlatList 
-            style={styles.list} 
-            data={RECIPES} 
-            keyExtractor={(item) => item.id} 
-            renderItem={renderRecipeItem} 
-            horizontal={true} 
-            showsHorizontalScrollIndicator={false}/>
-            <Title style={styles.favourite} textStyle={styles.titleText}>Favourite Recipes</Title>
-            <FlatList 
-            style={styles.list} 
-            data={RECIPES} 
-            keyExtractor={(item) => item.id} 
-            renderItem={renderRecipeItem} 
-            horizontal={true} 
-            showsHorizontalScrollIndicator={false}/>
-        </View>
-    )
+      <RecipeCard
+        height={160}
+        width={160}
+        cHeight={'h-40'}
+        cWidth={'w-40'}
+        size="text-xs"
+        iconSize={12}
+        pressHandler={pressHandler}
+      >
+        {item.title}
+      </RecipeCard>
+    );
+  }
+
+  return (
+    <View className="flex-1 bg-primary100">
+      <HeroText />
+      <Title className="mt-14 pl-5" textStyle={'font-bold text-sm'}>
+        Recently Viewed Recipes
+      </Title>
+      <FlatList
+        className='flex-1 max-h-[30%]'
+        data={RECIPES}
+        keyExtractor={(item) => item.id}
+        renderItem={renderRecipeItem}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
+      <Title className="pl-5" textStyle={'font-bold text-sm'}>
+        Favourite Recipes
+      </Title>
+      <FlatList
+        className='flex-1 max-h-[30%]'
+        data={RECIPES}
+        keyExtractor={(item) => item.id}
+        renderItem={renderRecipeItem}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
+    </View>
+  );
 }
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: GlobalStyles.colors.primary100,
-    },
-    recent: {
-        marginTop: 60,
-        paddingLeft: 20,
-    },
-    favourite: {
-        paddingLeft: 20
-    },
-    list: {
-        flex: 1,
-        maxHeight: '30%'
-    },
-    titleText: {
-        fontWeight: 'bold',
-        fontSize: 14
-    }
-})

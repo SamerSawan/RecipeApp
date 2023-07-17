@@ -1,76 +1,50 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import SearchBar from "../components/Search/SearchBar";
 import Button from "../components/Util/IconButton";
 import CategoryCarousel from "../components/Search/CategoryCarousel";
 import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
-import { GlobalStyles } from "../constants/styles";
-
-
 
 function RecipesScreen({ navigation }) {
-
-    function renderRecipeItem({ item }) {
-        function pressHandler() {
-            navigation.navigate('Recipe Details', {
-                recipeId: item.id
-            })
-        }
-
-        return (
-            <RecipeCard height={150} width={300} size={14} pressHandler={pressHandler}>{item.title}</RecipeCard>
-        );
+  function renderRecipeItem({ item }) {
+    function pressHandler() {
+      navigation.navigate("Recipe Details", {
+        recipeId: item.id,
+      });
     }
 
-
     return (
-        <>
-        <View style={styles.container}>
-            <View style={styles.innerContainer}>
-                <SearchBar />
-                <Button style={styles.filter} name="filter" size={24} color="white"/>
-            </View>
-            <CategoryCarousel />
-            <FlatList
-            style={styles.list} 
-            data={RECIPES} 
-            keyExtractor={(item) => item.id}
-            renderItem={renderRecipeItem}
-            />
+      <RecipeCard
+        height={160}
+        width={320}
+        cHeight={'h-40'}
+        cWidth={'w-80'}
+        size={14}
+        pressHandler={pressHandler}
+      >
+        {item.title}
+      </RecipeCard>
+    );
+  }
+
+  return (
+    <>
+      <View className='flex-1 flex-column justify-start align-center bg-primary100'>
+        <View className='h-[20%] flex-row'>
+          <SearchBar />
+          <Button className='mt-24 mr-10 bg-primary300 h-10 w-12 items-center justify-center rounded-lg' name="filter" size={24} color="white" />
         </View>
-            
-        </>
-        
-    )
+        <CategoryCarousel />
+        <FlatList
+          className='mt-4 ml-3.5'
+          data={RECIPES}
+          keyExtractor={(item) => item.id}
+          renderItem={renderRecipeItem}
+        />
+      </View>
+    </>
+  );
 }
 
 export default RecipesScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignContent: 'center',
-        backgroundColor: GlobalStyles.colors.primary100,
-    },
-    innerContainer: {
-        height: '20%',
-        flexDirection: 'row'
-    },
-    filter: {
-        marginTop: 100,
-        marginRight: 40,
-        backgroundColor: GlobalStyles.colors.primary300,
-        height: 40,
-        width: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-    },
-    list: {
-        marginTop: 15,
-        marginLeft: 20,
-    }
-})
