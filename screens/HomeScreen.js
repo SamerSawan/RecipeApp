@@ -19,7 +19,7 @@ function HomeScreen({ navigation }) {
         }
 
         return (
-            <RecipeCard height={150} width={150} size={12} pressHandler={pressHandler}>{item.title}</RecipeCard>
+            <RecipeCard height={150} width={150} size="text-xs" pressHandler={pressHandler}>{item.title}</RecipeCard>
         );
     }
 

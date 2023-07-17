@@ -1,25 +1,23 @@
-import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
+import { View, Text, FlatList, Pressable } from "react-native";
 
 import { CATEGORIES } from "../../data/dummy-data";
-import { GlobalStyles } from "../../constants/styles";
 
 function renderCategory({ item }){
     return (
-        <Text style={styles.unselectedText}>{item.title}</Text>
+        <Text className="text-primary200">{item.title}</Text>
     )
 }
 
 function CategoryCarousel(){
     return (
-        <View style={styles.container}>
+        <View className="mt-2.5 ml-7">
             <FlatList 
-            style={styles.list}
             data={CATEGORIES} 
             keyExtractor={(item) => item.id}
             renderItem={renderCategory}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <Pressable style={styles.separator}/>}/>
+            ItemSeparatorComponent={() => <Pressable className="w-1/6"/>}/>
         </View>
     
     )
@@ -27,16 +25,3 @@ function CategoryCarousel(){
 }
 
 export default CategoryCarousel;
-
-const styles = StyleSheet.create({
-    container: {
-        marginTop: 10,
-        marginLeft: 30
-    },
-    separator: {
-        width: '15%',
-    },
-    unselectedText: {
-        color: GlobalStyles.colors.primary200
-    }
-})

@@ -8,11 +8,11 @@ function onClick(){
 
 function SearchBar() {
     return (
-        <View style={styles.container} >
-            <Pressable style={styles.innerContainer} onPress={onClick}>
-                <View style={styles.innerText}>
+        <View className="flex-1" >
+            <Pressable className="w-60 border-primary150 border rounded-lg mt-24 ml-8" onPress={onClick}>
+                <View className="flex-row">
                     <Ionicons name="search-outline" color={GlobalStyles.colors.primary150} size={24} style={styles.icon}/>
-                    <Text style={styles.text}>
+                    <Text className="my-2.5 text-primary150">
                             Search Recipe
                     </Text>
                 </View>
@@ -26,28 +26,8 @@ function SearchBar() {
 export default SearchBar;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: GlobalStyles.colors.primary100,
-    },
-    innerContainer: {
-        width: 250,
-        borderColor: GlobalStyles.colors.primary150,
-        borderWidth: 1,
-        borderRadius: 10,
-        marginTop: 100,
-        marginLeft: 32
-    },
-    innerText: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
     icon: {
         marginVertical: 6,
         marginHorizontal: 10
     },
-    text: {
-        marginVertical: 10,
-        color: GlobalStyles.colors.primary150
-    }
 })

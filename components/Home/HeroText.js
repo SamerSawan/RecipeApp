@@ -1,13 +1,12 @@
-import { StyleSheet, View, Text } from "react-native";
-import { GlobalStyles } from "../../constants/styles";
+import { View, Text } from "react-native";
 
 function HeroText() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>
+        <View className="mt-28 items-center">
+            <Text className="font-bold text-xl">
                 Hello Samer
             </Text>
-            <Text style={styles.hero}>
+            <Text className="text-primary200">
                 What are you cooking today?
             </Text>
         </View>
@@ -17,17 +16,3 @@ function HeroText() {
 }
 
 export default HeroText;
-
-const styles =  StyleSheet.create({
-    container: {
-        marginTop: 100,
-        alignItems: 'center'
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 20,
-    },
-    hero: {
-        color: GlobalStyles.colors.primary200
-    }
-})
