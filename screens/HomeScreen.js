@@ -4,8 +4,12 @@ import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
 
 import { RECIPES } from "../data/dummy-data";
+import { useContext } from "react";
+import { FavouritesContext } from "../store/favourites-context";
 
 function HomeScreen({ navigation }) {
+  const favouritesContext = useContext(FavouritesContext);
+
   function renderRecipeItem({ item }) {
     function pressHandler() {
       navigation.navigate("Recipe Details", {
@@ -28,6 +32,8 @@ function HomeScreen({ navigation }) {
     );
   }
 
+  const favourites = RECIPES.filter((recipe) => favouritesContext.ids.includes(recipe.id));
+
   return (
     <View className="flex-1 bg-primary100">
       <HeroText />
@@ -47,7 +53,7 @@ function HomeScreen({ navigation }) {
       </Title>
       <FlatList
         className='flex-1 max-h-[30%]'
-        data={RECIPES}
+        data={favourites}
         keyExtractor={(item) => item.id}
         renderItem={renderRecipeItem}
         horizontal={true}

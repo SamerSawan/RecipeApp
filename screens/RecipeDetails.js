@@ -52,9 +52,9 @@ function RecipeDetails({ route, navigation }) {
           Fried Rice
         </Title>
         <IconButton
-          name={recipeIsFavourite ? "star-outline" : "star"}
+          name={recipeIsFavourite ? "star" : "star-outline"}
           size={32}
-          color={recipeIsFavourite ? "white" : "yellow"}
+          color={recipeIsFavourite ? "yellow" : "white"}
           onPress={favouritePressHandler}
           className="mt-0.5"
         />
