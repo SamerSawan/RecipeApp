@@ -11,6 +11,7 @@ import RecipeDetails from "./screens/RecipeDetails";
 import { Ionicons } from "@expo/vector-icons";
 import { GlobalStyles } from "./constants/styles";
 import SearchContextProvider from "./store/search-context";
+import FavouritesContextProvider from "./store/favourites-context";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,14 +55,16 @@ export default function App() {
     <>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="Tab" component={DrawerNavigator} />
-          <Stack.Screen name="Recipe Details" component={RecipeDetails} />
-        </Stack.Navigator>
+        <FavouritesContextProvider>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="Tab" component={DrawerNavigator} />
+            <Stack.Screen name="Recipe Details" component={RecipeDetails} />
+          </Stack.Navigator>
+        </FavouritesContextProvider>
       </NavigationContainer>
     </>
   );
