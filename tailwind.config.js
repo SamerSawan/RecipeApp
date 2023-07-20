@@ -15,6 +15,7 @@ module.exports = {
         'primary200': '#129575',
         'primary300': '#2A7C68',
         'accent500': '#FFBA4D',
+        'gray500': '#878787',
       },
     },
   },

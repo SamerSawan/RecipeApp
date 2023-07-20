@@ -12,11 +12,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { GlobalStyles } from "./constants/styles";
 import SearchContextProvider from "./store/search-context";
 import FavouritesContextProvider from "./store/favourites-context";
+import GroceryScreen from "./screens/GroceryScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function DrawerNavigator() {
+function TabNavigator() {
   return (
     <SearchContextProvider>
       <Tab.Navigator
@@ -33,7 +35,7 @@ function DrawerNavigator() {
           options={{
             tabBarLabel: "Home",
             tabBarActiveTintColor: GlobalStyles.colors.accent500,
-            tabBarIcon: () => <Ionicons name="home-outline" size={20} />,
+            tabBarIcon: ({focused}) => <Ionicons name="home" color={focused ? GlobalStyles.colors.accent500 : '#878787'} size={20} />,
           }}
         />
         <Tab.Screen
@@ -42,9 +44,27 @@ function DrawerNavigator() {
           options={{
             tabBarLabel: "Recipes",
             tabBarActiveTintColor: GlobalStyles.colors.accent500,
-            tabBarIcon: () => <Ionicons name="book-outline" size={20} />,
+            tabBarIcon: ({focused}) => <Ionicons name="book" color={focused ? GlobalStyles.colors.accent500 : '#878787'} size={20} />,
           }}
         />
+        <Tab.Screen 
+          name="Grocery"
+          component={GroceryScreen}
+          options={{
+            tabBarLabel: "Grocery",
+            tabBarActiveTintColor: GlobalStyles.colors.accent500,
+            tabBarIcon: ({focused}) => <Ionicons name="cart-outline" color={focused ? GlobalStyles.colors.accent500 : '#878787'} size={20}/>,
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarLabel: "Profile",
+            tabBarActiveTintColor: GlobalStyles.colors.accent500,
+            tabBarIcon: ({focused}) => <Ionicons name="person-outline" color={focused ? GlobalStyles.colors.accent500 : '#878787'} size={20}/>
+          }}
+          />
       </Tab.Navigator>
     </SearchContextProvider>
   );
@@ -61,7 +81,7 @@ export default function App() {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="Tab" component={DrawerNavigator} />
+            <Stack.Screen name="Tab" component={TabNavigator} />
             <Stack.Screen name="Recipe Details" component={RecipeDetails} />
           </Stack.Navigator>
         </FavouritesContextProvider>
@@ -70,4 +90,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({});

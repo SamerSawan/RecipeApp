@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import HeroText from "../components/Home/HeroText";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
