@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -18,9 +18,11 @@ import AddRecipeScreen from "./screens/AddRecipeScreen";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const DummyContainer = () => <View className="bg-red flex-1"><Text>Hello World!!!</Text></View>
+
 const CustomTabBarButton = ({children, onPress}) => (
   <TouchableOpacity
-  className="justify-center items-center -top-6"
+  className="justify-center items-center -top-7"
   onPress={onPress}>
     <View className="w-16 h-16">
       {children}
@@ -28,7 +30,7 @@ const CustomTabBarButton = ({children, onPress}) => (
   </TouchableOpacity>
 )
 
-function TabNavigator() {
+function TabNavigator({navigation}) {
   return (
     <SearchContextProvider>
       <Tab.Navigator
@@ -81,14 +83,20 @@ function TabNavigator() {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="add-circle"
-              color={focused ? GlobalStyles.colors.accent500 : "#878787"}
+              color={GlobalStyles.colors.accent500}
               size={60}
             />
             ),
           tabBarButton: (props) => (
             <CustomTabBarButton {...props}/>
           )
-        }}/>
+        }}
+        listeners={() => ({
+          tabPress: (e) => {
+            e.preventDefault()
+            navigation.navigate("Add Recipe")
+          },
+        })}/>
         <Tab.Screen
           name="Grocery"
           component={GroceryScreen}
@@ -139,6 +147,9 @@ export default function App() {
           >
             <Stack.Screen name="Tab" component={TabNavigator} />
             <Stack.Screen name="Recipe Details" component={RecipeDetails} />
+            <Stack.Screen name="Add Recipe" component={AddRecipeScreen} options={{
+              presentation: 'modal'
+            }}/>
           </Stack.Navigator>
         </FavouritesContextProvider>
       </NavigationContainer>
