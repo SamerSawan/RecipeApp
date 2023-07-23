@@ -1,11 +1,20 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import AddRecipeForm from "../components/Forms/AddRecipeForm";
+import Button from "../components/Util/Button";
 
-function AddRecipeScreen(){
+function AddRecipeScreen({navigation}){
+
+    function cancelPressHandler() {
+        navigation.goBack();
+      }
+
     return (
-        <View>
-            <Text>
-                Add Recipe
-            </Text>
+        <View className="flex-1 justify-center items-center bg-primary100">
+            <AddRecipeForm />
+            <View className="flex-row items-center justify-between w-60">
+                <Button onPress={cancelPressHandler}>Cancel</Button>
+                <Button>Done</Button>
+            </View>
         </View>
     )
 }

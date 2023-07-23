@@ -3,7 +3,7 @@ import IconButton from "../components/Util/IconButton";
 import { INGREDIENTS } from "../data/dummy-data";
 import Title from "../components/Util/Title";
 import RecipeCard from "../components/Home/RecipeCard";
-import Button from "../components/Util/Button";
+import ToggleButton from "../components/Util/Button";
 import { FavouritesContext } from "../store/favourites-context";
 import { useContext } from "react";
 
@@ -75,14 +75,14 @@ function RecipeDetails({ route, navigation }) {
       </Text>
       <View className="flex-row px-14 justify-between">
         <View className="bg-primary300 rounded-lg p-4">
-          <Button className="text-white text-base font-bold">
+          <ToggleButton className="text-white text-base font-bold">
             Ingredients
-          </Button>
+          </ToggleButton>
         </View>
         <View className="p-4">
-          <Button className="text-primary200 font-bold text-base">
+          <ToggleButton className="text-primary200 font-bold text-base">
             Procedure
-          </Button>
+          </ToggleButton>
         </View>
       </View>
       <FlatList

@@ -11,12 +11,10 @@ function FavouritesContextProvider({children}) {
     const [favourites, setFavourites] = useState([]);
 
     const addFavourite = (id) => {
-        console.log('a')
         setFavourites([...favourites, id])
     }
 
     const removeFavourite = (idToRemove) => {
-        console.log('r')
         setFavourites(favourites.filter((id) => id !== idToRemove));
     }
 
