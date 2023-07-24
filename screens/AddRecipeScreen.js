@@ -9,7 +9,7 @@ function AddRecipeScreen({navigation}){
       }
 
     return (
-        <View className="flex-1 justify-center items-center bg-primary100">
+        <View className="flex-1 items-center bg-primary100">
             <AddRecipeForm />
             <View className="flex-row items-center justify-between w-60">
                 <Button onPress={cancelPressHandler}>Cancel</Button>

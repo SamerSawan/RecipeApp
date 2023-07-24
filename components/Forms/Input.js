@@ -1,13 +1,13 @@
 import { TextInput, Text, View } from "react-native"
 
 
-function Input({label}){
+function Input({label, placeholder, style}){
     return (
-        <View className="flex-row">
-            <Text className="text-primary200 mr-5">
+        <View className={style + " items-center justify-between"}>
+            <Text className="text-primary200">
                 {label}
             </Text>
-            <TextInput className="text-black border-2 border-primary150 px-2 py-0.5 rounded-md" placeholder="hello world" />
+            <TextInput className="text-black border-2 border-primary150 px-2 py-0.5 rounded-md max-w-2/3" multiline placeholder={placeholder} />
         </View>
     )
 }

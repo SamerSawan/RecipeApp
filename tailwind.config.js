@@ -17,6 +17,9 @@ module.exports = {
         'accent500': '#FFBA4D',
         'gray500': '#878787',
       },
+      maxWidth: {
+        '2/3': '66%'
+      }
     },
   },
   plugins: [],
