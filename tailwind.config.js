@@ -16,6 +16,7 @@ module.exports = {
         'primary300': '#2A7C68',
         'accent500': '#FFBA4D',
         'gray500': '#878787',
+        'error500': '#9b095c',
       },
       maxWidth: {
         '2/3': '66%'

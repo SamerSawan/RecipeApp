@@ -1,9 +1,32 @@
-import { View } from "react-native"
+import { useState } from 'react';
+import { View, Image } from "react-native"
+import * as ImagePicker from 'expo-image-picker';
 import Input from "./Input"
 import ListInput from "./ListInput"
+import Button from '../Util/Button';
+
+
 
 
 function AddRecipeForm(){
+    const [image, setImage] = useState(null);
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+        console.log(result);
+
+        if (!result.canceled) {
+        setImage(result.assets[0].uri);
+        }
+    };
+
+
     return (
         <View className="">
             <View className="my-10 items-center">
@@ -12,8 +35,11 @@ function AddRecipeForm(){
             <View className="mb-10">
                 <Input label="Description" placeholder={"Description"} />
             </View>
-            <View className="mb-10">
-                <Input label="Image" />
+            <View className="mb-10 items-center">
+                <View className="w-36">
+                    <Button onPress={pickImage}>Pick Image</Button>
+                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                </View>
             </View>
             <View>
                 <View>

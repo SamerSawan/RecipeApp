@@ -7,7 +7,7 @@ function Input({label, placeholder, style}){
             <Text className="text-primary200">
                 {label}
             </Text>
-            <TextInput className="text-black border-2 border-primary150 px-2 py-0.5 rounded-md max-w-2/3" multiline placeholder={placeholder} />
+            <TextInput className="text-black border-2 border-primary150 px-2 py-0.5 rounded-md max-w-2/3" multiline blurOnSubmit placeholder={placeholder} />
         </View>
     )
 }
