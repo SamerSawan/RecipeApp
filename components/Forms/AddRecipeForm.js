@@ -5,6 +5,8 @@ import Input from "./Input"
 import ListInput from "./ListInput"
 import Button from '../Util/Button';
 
+import Ingredient from '../../models/ingredient';
+
 
 
 
@@ -12,6 +14,11 @@ function AddRecipeForm(){
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [image, setImage] = useState(null);
+    const [ingredients, setIngredients] = useState([])
+    const [ingredient, setIngredient] = useState(null)
+    const [quantity, setQuantity] = useState('')
+    const [instructions, setInstructions] = useState([])
+    const [instruction, setInstruction] = useState('')
 
 
     const pickImage = async () => {
@@ -34,6 +41,18 @@ function AddRecipeForm(){
 
     function descChangeHandler(enteredText) {
         setDesc(enteredText);
+    }
+
+    function ingredientChangeHandler(enteredText) {
+        setIngredient(enteredText);
+    }
+
+    function quantityChangeHandler(enteredText) {
+        setQuantity(enteredText);
+    }
+
+    function instructionChangeHandler(enteredText){
+        setInstruction(enteredText);
     }
 
     return (
@@ -61,10 +80,24 @@ function AddRecipeForm(){
             </View>
             <View>
                 <View>
-                    <ListInput label="Ingredients" placeholder="Ingredient Name" isIngredient={true} buttonTitle="add ingredient" />
+                    <ListInput 
+                    label="Ingredients" 
+                    placeholder="Ingredient Name" 
+                    onChangeText={ingredientChangeHandler}
+                    value={ingredient}
+                    quantityOnChangeText={quantityChangeHandler}
+                    quantity={quantity}
+                    isIngredient={true} 
+                    buttonTitle="add ingredient" />
                 </View>
                 <View className="mt-4">
-                    <ListInput label="Instructions" placeholder="Instruction" buttonTitle="add instruction" />
+                    <ListInput 
+                    label="Instructions" 
+                    placeholder="Instruction" 
+                    buttonTitle="add instruction" 
+                    onChangeText={instructionChangeHandler}
+                    value={instruction}
+                    />
                 </View>
             </View>
         </View>
