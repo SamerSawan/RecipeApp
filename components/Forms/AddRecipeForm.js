@@ -9,7 +9,10 @@ import Button from '../Util/Button';
 
 
 function AddRecipeForm(){
+    const [name, setName] = useState('');
+    const [desc, setDesc] = useState('');
     const [image, setImage] = useState(null);
+
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -19,26 +22,41 @@ function AddRecipeForm(){
           aspect: [4, 3],
           quality: 1,
         });
-        console.log(result);
 
         if (!result.canceled) {
         setImage(result.assets[0].uri);
         }
     };
 
+    function nameChangeHandler(enteredText) {
+        setName(enteredText);
+    }
+
+    function descChangeHandler(enteredText) {
+        setDesc(enteredText);
+    }
 
     return (
         <View className="">
             <View className="my-10 items-center">
-                <Input label="Name" placeholder={"Recipe Name"} style="flex-row w-40"/>
+                <Input 
+                label="Name" 
+                placeholder={"Recipe Name"}
+                onChangeText={nameChangeHandler}
+                value={name} 
+                style="flex-row w-40"/>
             </View>
             <View className="mb-10">
-                <Input label="Description" placeholder={"Description"} />
+                <Input 
+                label="Description" 
+                placeholder={"Description"}
+                onChangeText={descChangeHandler}
+                value={desc} />
             </View>
             <View className="mb-10 items-center">
                 <View className="w-36">
                     <Button onPress={pickImage}>Pick Image</Button>
-                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                    {image && <Image className="rounded-lg" source={{ uri: image }} style={{ width: 200, height: 200 }} />}
                 </View>
             </View>
             <View>
