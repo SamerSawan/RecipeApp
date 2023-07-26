@@ -12,14 +12,12 @@ function AddRecipeForm(){
     const [image, setImage] = useState(null);
 
     const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
           allowsEditing: true,
           aspect: [4, 3],
           quality: 1,
         });
-        console.log(result);
 
         if (!result.canceled) {
         setImage(result.assets[0].uri);
@@ -36,13 +34,17 @@ function AddRecipeForm(){
                 <Input label="Description" placeholder={"Description"} />
             </View>
             <View className="mb-10 items-center">
-                <View className="w-36">
-                    <Button onPress={pickImage}>Pick Image</Button>
-                    {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                <View className="w-80 items-center">
+                    <View className="w-36 mb-2">
+                        <Button onPress={pickImage}>Pick Image</Button>
+                    </View>
+                    {image && 
+                    <Image className="rounded-lg" source={{ uri: image }} style={{ width: 200, height: 200 }} />
+                    }
                 </View>
             </View>
             <View>
-                <View>
+                <View className="items-center">
                     <ListInput label="Ingredients" placeholder="Ingredient Name" isIngredient={true} buttonTitle="add ingredient" />
                 </View>
                 <View className="mt-4">
