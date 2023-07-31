@@ -13,7 +13,7 @@ import ListInput from "./ListInput";
 import Button from "../Util/Button";
 import Ingredient from "../../models/ingredient";
 
-function AddRecipeForm() {
+function AddRecipeForm({navigation}) {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState(null);
@@ -22,6 +22,10 @@ function AddRecipeForm() {
   const [quantity, setQuantity] = useState("");
   const [instructions, setInstructions] = useState([]);
   const [instruction, setInstruction] = useState("");
+
+  function cancelPressHandler() {
+    navigation.goBack();
+  }
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -90,87 +94,99 @@ function AddRecipeForm() {
   }
 
   return (
-    <View className="flex-auto border-2">
-      <View className="flex-row pt-2 mt-10 mb-5 w-96">
-        <View>
-          <Input
-            label="Name"
-            placeholder={"Recipe Name"}
-            onChangeText={nameChangeHandler}
-            value={name}
-            style="w-40"
-          />
-          <View className="mb-10 items-center">
-            <View className="w-36">
-              {image ? (
-                <Pressable className="items-center mt-2" onPress={pickImage}>
-                  <Image
-                    className="rounded-lg"
-                    source={{ uri: image }}
-                    style={{ width: 100, height: 100 }}
-                  />
-                </Pressable>
-              ) : (
-                <View className="mt-2">
-                  <Button onPress={pickImage}>Pick Image</Button>
-                </View>
-              )}
+    <View className="items-center">
+      <View className="flex-auto border-2">
+        <View className="flex-row pt-2 mt-10 mb-5 w-96">
+          <View>
+            <Input
+              label="Name"
+              placeholder={"Recipe Name"}
+              onChangeText={nameChangeHandler}
+              value={name}
+              style="w-40"
+            />
+            <View className="mb-10 items-center">
+              <View className="w-36">
+                {image ? (
+                  <Pressable className="items-center mt-2" onPress={pickImage}>
+                    <Image
+                      className="rounded-lg"
+                      source={{ uri: image }}
+                      style={{ width: 100, height: 100 }}
+                    />
+                  </Pressable>
+                ) : (
+                  <View className="mt-2">
+                    <Button onPress={pickImage}>Pick Image</Button>
+                  </View>
+                )}
+              </View>
             </View>
           </View>
+          <View className="">
+            <Input
+              label="Description"
+              placeholder={"Description"}
+              onChangeText={descChangeHandler}
+              value={desc}
+              style="w-64 h-32"
+            />
+          </View>
         </View>
-        <View className="">
-          <Input
-            label="Description"
-            placeholder={"Description"}
-            onChangeText={descChangeHandler}
-            value={desc}
-            style="w-64 h-32"
-          />
+        <View>
+          <View className="pt-2 items-center">
+            <ListInput
+              label="Ingredients"
+              placeholder="Ingredient Name"
+              onChangeText={ingredientChangeHandler}
+              value={ingredient}
+              quantityOnChangeText={quantityChangeHandler}
+              quantity={quantity}
+              isIngredient={true}
+              onPress={addIngredient}
+              buttonTitle="add ingredient"
+            />
+            {ingredients.length > 0 && (
+              <ScrollView horizontal className="w-32 p-2">
+                <FlatList
+                  data={ingredients}
+                  keyExtractor={(item) => item.id.toString()}
+                  ItemSeparatorComponent={() => <View className="h-2"></View>}
+                  renderItem={renderIngredientItem}
+                />
+              </ScrollView>
+            )}
+          </View>
+          <View className="mt-4 items-center">
+            <ListInput
+              label="Instructions"
+              placeholder="Instruction"
+              onChangeText={instructionChangeHandler}
+              value={instruction}
+              onPress={addInstruction}
+              buttonTitle="add instruction"
+            />
+            {instructions.length > 0 && (
+              <ScrollView horizontal className="w-52 p-2">
+                <FlatList
+                  data={instructions}
+                  keyExtractor={(item) => item}
+                  ItemSeparatorComponent={() => <View className="h-2"></View>}
+                  renderItem={renderInstructionItem}
+                />
+              </ScrollView>
+            )}
+          </View>
         </View>
       </View>
-      <View>
-        <View className="pt-2 items-center">
-          <ListInput
-            label="Ingredients"
-            placeholder="Ingredient Name"
-            onChangeText={ingredientChangeHandler}
-            value={ingredient}
-            quantityOnChangeText={quantityChangeHandler}
-            quantity={quantity}
-            isIngredient={true}
-            onPress={addIngredient}
-            buttonTitle="add ingredient"
-          />
-          {ingredients.length > 0 && (
-            <ScrollView horizontal className="w-32 p-2">
-              <FlatList
-                data={ingredients}
-                keyExtractor={(item) => item.id.toString()}
-                ItemSeparatorComponent={() => <View className="h-2"></View>}
-                renderItem={renderIngredientItem}
-              />
-            </ScrollView>
-          )}
+      <View className="flex-row items-center justify-between w-60 mt-10">
+        <View className="w-24">
+          <Button isCancel={true} onPress={cancelPressHandler}>
+            Cancel
+          </Button>
         </View>
-        <View className="mt-4 items-center">
-          <ListInput
-            label="Instructions"
-            placeholder="Instruction"
-            onChangeText={instructionChangeHandler}
-            value={instruction}
-            onPress={addInstruction}
-            buttonTitle="add instruction"
-          />
-          {instructions.length > 0 && (
-            <ScrollView horizontal className="w-52 p-2">
-              <FlatList
-                data={instructions}
-                keyExtractor={(item) => item}
-                ItemSeparatorComponent={() => <View className="h-2"></View>}
-                renderItem={renderInstructionItem}
-              />
-            </ScrollView>
-          )}
+        <View className="w-24">
+          <Button>Done</Button>
         </View>
       </View>
     </View>
