@@ -49,11 +49,20 @@ function AddRecipeForm() {
     setInstruction(enteredText);
   }
 
-  function addIngredient() {}
-
+  function addIngredient() {
+    ingr = new Ingredient(
+        Math.floor(Math.random() * 100),
+        ingredient,
+        quantity
+    )
+    setIngredient("")
+    setQuantity("")
+    setIngredients((prevIngredients) => [...prevIngredients, ingr])
+    console.log(ingredients)
+  }
   return (
     <View className="">
-      <View className="flex-row border-2 pt-2 mt-10 mb-5 w-96">
+      <View className="flex-row pt-2 mt-10 mb-5 w-96">
         <View>
           <Input
             label="Name"
@@ -89,7 +98,7 @@ function AddRecipeForm() {
         </View>
       </View>
       <View>
-        <View className="border-2 items-center">
+        <View className="pt-2 items-center">
           <ListInput
             label="Ingredients"
             placeholder="Ingredient Name"
@@ -98,6 +107,7 @@ function AddRecipeForm() {
             quantityOnChangeText={quantityChangeHandler}
             quantity={quantity}
             isIngredient={true}
+            onPress={addIngredient}
             buttonTitle="add ingredient"
           />
         </View>
