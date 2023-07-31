@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, Image, Pressable, FlatList, ScrollView, Text } from "react-native";
+import {
+  View,
+  Image,
+  Pressable,
+  FlatList,
+  ScrollView,
+  Text,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Input from "./Input";
 import ListInput from "./ListInput";
@@ -60,11 +67,24 @@ function AddRecipeForm() {
     setIngredients((prevIngredients) => [...prevIngredients, ingr]);
   }
 
+  function addInstruction() {
+    setInstructions((prevInstructions) => [...prevInstructions, instruction]);
+    setInstruction("");
+  }
+
   function renderIngredientItem({ item }) {
     return (
-      <View className="flex-row justify-between w-24 pt-1 align-center">
+      <View className="flex-row justify-between bg-primary50 rounded-lg py-1 px-2 w-24 pt-1 align-center">
         <Text className="text-primary200">{item.name}</Text>
         <Text className="text-primary200">{item.amount}</Text>
+      </View>
+    );
+  }
+
+  function renderInstructionItem({ item, index }) {
+    return (
+      <View className="flex-row justify-between w-48 pt-1 bg-primary50 rounded-lg align-center">
+        <Text className="text-primary200">{`${index + 1}. ${item}`}</Text>
       </View>
     );
   }
@@ -92,7 +112,7 @@ function AddRecipeForm() {
                 </Pressable>
               ) : (
                 <View className="mt-2">
-                    <Button onPress={pickImage}>Pick Image</Button>
+                  <Button onPress={pickImage}>Pick Image</Button>
                 </View>
               )}
             </View>
@@ -121,23 +141,36 @@ function AddRecipeForm() {
             onPress={addIngredient}
             buttonTitle="add ingredient"
           />
-          {ingredients.length > 0 && (<ScrollView horizontal className="w-32 bg-primary50 p-2 rounded-lg">
-            <FlatList
-              data={ingredients}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={renderIngredientItem}
-            />
-          </ScrollView>)
-          }
+          {ingredients.length > 0 && (
+            <ScrollView horizontal className="w-32 p-2">
+              <FlatList
+                data={ingredients}
+                keyExtractor={(item) => item.id.toString()}
+                ItemSeparatorComponent={() => <View className="h-2"></View>}
+                renderItem={renderIngredientItem}
+              />
+            </ScrollView>
+          )}
         </View>
-        <View className="mt-4">
+        <View className="mt-4 items-center">
           <ListInput
             label="Instructions"
             placeholder="Instruction"
-            buttonTitle="add instruction"
             onChangeText={instructionChangeHandler}
             value={instruction}
+            onPress={addInstruction}
+            buttonTitle="add instruction"
           />
+          {instructions.length > 0 && (
+            <ScrollView horizontal className="w-52 p-2">
+              <FlatList
+                data={instructions}
+                keyExtractor={(item) => item}
+                ItemSeparatorComponent={() => <View className="h-2"></View>}
+                renderItem={renderInstructionItem}
+              />
+            </ScrollView>
+          )}
         </View>
       </View>
     </View>
