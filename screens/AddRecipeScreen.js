@@ -10,7 +10,7 @@ function AddRecipeScreen({navigation}){
 
     return (
         <ScrollView className="bg-primary100">
-            <View className="flex-1 items-center ">
+            <View className="flex-1 items-center bg-primary100">
                 <AddRecipeForm />
                 <View className="flex-row items-center justify-between w-60 mt-10">
                     <View className="w-24">

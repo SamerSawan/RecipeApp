@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Image, Pressable } from "react-native";
+import { View, Image, Pressable, FlatList, ScrollView, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Input from "./Input";
 import ListInput from "./ListInput";
@@ -51,17 +51,26 @@ function AddRecipeForm() {
 
   function addIngredient() {
     ingr = new Ingredient(
-        Math.floor(Math.random() * 100),
-        ingredient,
-        quantity
-    )
-    setIngredient("")
-    setQuantity("")
-    setIngredients((prevIngredients) => [...prevIngredients, ingr])
-    console.log(ingredients)
+      Math.floor(Math.random() * 100),
+      ingredient,
+      quantity
+    );
+    setIngredient("");
+    setQuantity("");
+    setIngredients((prevIngredients) => [...prevIngredients, ingr]);
   }
+
+  function renderIngredientItem({ item }) {
+    return (
+      <View className="flex-row justify-between w-24 pt-1 align-center">
+        <Text className="text-primary200">{item.name}</Text>
+        <Text className="text-primary200">{item.amount}</Text>
+      </View>
+    );
+  }
+
   return (
-    <View className="">
+    <View className="flex-auto border-2">
       <View className="flex-row pt-2 mt-10 mb-5 w-96">
         <View>
           <Input
@@ -82,7 +91,9 @@ function AddRecipeForm() {
                   />
                 </Pressable>
               ) : (
-                <Button onPress={pickImage}>Pick Image</Button>
+                <View className="mt-2">
+                    <Button onPress={pickImage}>Pick Image</Button>
+                </View>
               )}
             </View>
           </View>
@@ -110,6 +121,14 @@ function AddRecipeForm() {
             onPress={addIngredient}
             buttonTitle="add ingredient"
           />
+          {ingredients.length > 0 && (<ScrollView horizontal className="w-32 bg-primary50 p-2 rounded-lg">
+            <FlatList
+              data={ingredients}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderIngredientItem}
+            />
+          </ScrollView>)
+          }
         </View>
         <View className="mt-4">
           <ListInput
