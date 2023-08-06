@@ -1,19 +1,16 @@
 import { useState } from "react";
-import {
-  View,
-  Image,
-  Pressable,
-  FlatList,
-  ScrollView,
-  Text,
-} from "react-native";
+import { View, Image, Pressable, FlatList, ScrollView, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Input from "./Input";
 import ListInput from "./ListInput";
 import Button from "../Util/Button";
 import Ingredient from "../../models/ingredient";
+import { useContext } from "react";
+import { RecipesContext } from "../../store/recipes-context";
+import Recipe from "../../models/recipe";
 
 function AddRecipeForm({navigation}) {
+  const recipesContext = useContext(RecipesContext);
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState(null);
@@ -61,7 +58,7 @@ function AddRecipeForm({navigation}) {
   }
 
   function addIngredient() {
-    ingr = new Ingredient(
+    let ingr = new Ingredient(
       Math.floor(Math.random() * 100),
       ingredient,
       quantity
@@ -74,6 +71,13 @@ function AddRecipeForm({navigation}) {
   function addInstruction() {
     setInstructions((prevInstructions) => [...prevInstructions, instruction]);
     setInstruction("");
+  }
+
+  function submitHandler() {
+    let curr = new Recipe(name, name);
+    recipesContext.addRecipe(curr);
+    console.log(recipesContext.recipes);
+    navigation.goBack();
   }
 
   function renderIngredientItem({ item }) {
@@ -186,7 +190,7 @@ function AddRecipeForm({navigation}) {
           </Button>
         </View>
         <View className="w-24">
-          <Button>Done</Button>
+          <Button onPress={submitHandler}>Done</Button>
         </View>
       </View>
     </View>

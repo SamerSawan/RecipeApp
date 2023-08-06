@@ -2,15 +2,15 @@ import { createContext, useState } from "react";
 
 export const RecipesContext = createContext({
     recipes: [],
-    addRecipe: (id) => {},
-    removeFavourite: (id) => {}
+    addRecipe: (newRecipe) => {},
+    removeFavourite: (recipeToRemove) => {}
 })
 
 function RecipesContextProvider({children}) {
     const [recipes, setRecipes] = useState([]);
 
     const addRecipe = (newRecipe) => {
-        setRecipes(...recipes, newRecipe)
+        setRecipes([...recipes, newRecipe])
     }
 
     const removeRecipe = (recipeToRemove) => {

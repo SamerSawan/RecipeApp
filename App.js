@@ -14,23 +14,27 @@ import FavouritesContextProvider from "./store/favourites-context";
 import GroceryScreen from "./screens/GroceryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import AddRecipeScreen from "./screens/AddRecipeScreen";
+import RecipesContextProvider from "./store/recipes-context";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const DummyContainer = () => <View className="bg-red flex-1"><Text>Hello World!!!</Text></View>
+const DummyContainer = () => (
+  <View className="bg-red flex-1">
+    <Text>Hello World!!!</Text>
+  </View>
+);
 
-const CustomTabBarButton = ({children, onPress}) => (
+const CustomTabBarButton = ({ children, onPress }) => (
   <TouchableOpacity
-  className="justify-center items-center -top-7"
-  onPress={onPress}>
-    <View className="w-16 h-16">
-      {children}
-    </View>
+    className="justify-center items-center -top-7"
+    onPress={onPress}
+  >
+    <View className="w-16 h-16">{children}</View>
   </TouchableOpacity>
-)
+);
 
-function TabNavigator({navigation}) {
+function TabNavigator({ navigation }) {
   return (
     <SearchContextProvider>
       <Tab.Navigator
@@ -73,30 +77,29 @@ function TabNavigator({navigation}) {
             ),
           }}
         />
-        <Tab.Screen 
-        name="Add Recipe"
-        component={AddRecipeScreen} 
-        options={{
-          tabBarLabel: "New Recipe",
-          tabBarShowLabel: false,
-          tabBarActiveTintColor: GlobalStyles.colors.accent500,
-          tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="add-circle"
-              color={GlobalStyles.colors.accent500}
-              size={60}
-            />
+        <Tab.Screen
+          name="Add Recipe"
+          component={AddRecipeScreen}
+          options={{
+            tabBarLabel: "New Recipe",
+            tabBarShowLabel: false,
+            tabBarActiveTintColor: GlobalStyles.colors.accent500,
+            tabBarIcon: ({ focused }) => (
+              <Ionicons
+                name="add-circle"
+                color={GlobalStyles.colors.accent500}
+                size={60}
+              />
             ),
-          tabBarButton: (props) => (
-            <CustomTabBarButton {...props}/>
-          )
-        }}
-        listeners={() => ({
-          tabPress: (e) => {
-            e.preventDefault()
-            navigation.navigate("Add Recipe")
-          },
-        })}/>
+            tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          }}
+          listeners={() => ({
+            tabPress: (e) => {
+              e.preventDefault();
+              navigation.navigate("Add Recipe");
+            },
+          })}
+        />
         <Tab.Screen
           name="Grocery"
           component={GroceryScreen}
@@ -140,17 +143,23 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <FavouritesContextProvider>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="Tab" component={TabNavigator} />
-            <Stack.Screen name="Recipe Details" component={RecipeDetails} />
-            <Stack.Screen name="Add Recipe" component={AddRecipeScreen} options={{
-              presentation: 'modal'
-            }}/>
-          </Stack.Navigator>
+          <RecipesContextProvider>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="Tab" component={TabNavigator} />
+              <Stack.Screen name="Recipe Details" component={RecipeDetails} />
+              <Stack.Screen
+                name="Add Recipe"
+                component={AddRecipeScreen}
+                options={{
+                  presentation: "modal",
+                }}
+              />
+            </Stack.Navigator>
+          </RecipesContextProvider>
         </FavouritesContextProvider>
       </NavigationContainer>
     </>

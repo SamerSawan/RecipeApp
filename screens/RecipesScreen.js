@@ -4,8 +4,7 @@ import Button from "../components/Util/IconButton";
 import CategoryCarousel from "../components/Search/CategoryCarousel";
 import RecipeCard from "../components/Home/RecipeCard";
 import { useContext } from "react";
-
-import { RECIPES } from "../data/dummy-data";
+import { RecipesContext } from "../store/recipes-context";
 import { SearchContext } from "../store/search-context"
 
 function RecipesScreen({ navigation }) {
@@ -31,8 +30,9 @@ function RecipesScreen({ navigation }) {
   }
 
   const { searchQuery } = useContext(SearchContext);
+  const recipesContext = useContext(RecipesContext);
 
-  const filteredRecipes = RECIPES.filter((recipe) => recipe.title.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredRecipes = recipesContext.recipes.filter((recipe) => recipe.title.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
     <>
