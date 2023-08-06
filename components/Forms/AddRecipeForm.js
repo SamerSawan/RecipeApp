@@ -7,6 +7,7 @@ import Button from "../Util/Button";
 import Ingredient from "../../models/ingredient";
 import { useContext } from "react";
 import { RecipesContext } from "../../store/recipes-context";
+import storeRecipe from "../../util/http";
 import Recipe from "../../models/recipe";
 
 function AddRecipeForm({navigation}) {
@@ -76,7 +77,7 @@ function AddRecipeForm({navigation}) {
   function submitHandler() {
     let curr = new Recipe(name, name);
     recipesContext.addRecipe(curr);
-    console.log(recipesContext.recipes);
+    storeRecipe({name})
     navigation.goBack();
   }
 
