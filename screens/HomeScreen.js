@@ -6,9 +6,11 @@ import RecipeCard from "../components/Home/RecipeCard";
 import { RECIPES } from "../data/dummy-data";
 import { useContext } from "react";
 import { FavouritesContext } from "../store/favourites-context";
+import { RecipesContext } from "../store/recipes-context";
 
 function HomeScreen({ navigation }) {
   const favouritesContext = useContext(FavouritesContext);
+  const recipesContext = useContext(RecipesContext);
 
   function renderRecipeItem({ item }) {
     function pressHandler() {
@@ -32,7 +34,7 @@ function HomeScreen({ navigation }) {
     );
   }
 
-  const favourites = RECIPES.filter((recipe) => favouritesContext.ids.includes(recipe.id));
+  const favourites = recipesContext.recipes.filter((recipe) => favouritesContext.ids.includes(recipe.id));
 
   return (
     <View className="flex-1 bg-primary100">
@@ -42,7 +44,7 @@ function HomeScreen({ navigation }) {
       </Title>
       <FlatList
         className='flex-1 max-h-[30%]'
-        data={RECIPES}
+        data={recipesContext.recipes}
         keyExtractor={(item) => item.id}
         renderItem={renderRecipeItem}
         horizontal={true}
